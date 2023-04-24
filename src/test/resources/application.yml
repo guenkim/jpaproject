@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    active: test #test에서 돌린다는 의미
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/jpashop
+    #    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create #application 로딩 시점에 table을 drop하고 새로 생성함, app 종료 시점에 테이블을 남긴다.
+    properties:
+      hibernate:
+        #        show_sql: true #System.out.println 함수 호출 시 로깅
+        format_sql: true #쿼리를 깔끔하게 보임
+        use_sql_comments: true # JPQL을 볼 수 있다
+
+  #글로벌 페이지 설정
+  data:
+    web:
+      pageable:
+        default-page-size: 10 # 기본 페이지 사이즈/
+        #max-page-size: 2000  # 최대 페이지 사이즈/
+
+logging.level:
+  org.hibernate.SQL: debug #로깅 파일에 남김
+  org.hibernate.type: trace #쿼리 파라미터 보이게 함
